@@ -9,6 +9,11 @@ chmod 600 /home/tunneluser/.ssh/id_ed25519
 echo "$LOGIN_PUBLIC_KEY" > /home/tunneluser/.ssh/authorized_keys
 chmod 600 /home/tunneluser/.ssh/authorized_keys
 
+# Generate host keys if missing
+if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
+  ssh-keygen -A
+fi
+
 # Start SSH daemon
 /usr/sbin/sshd
 
