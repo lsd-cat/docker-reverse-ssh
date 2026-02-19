@@ -2,6 +2,9 @@ FROM alpine:3.19
 
 RUN apk add --no-cache openssh bash
 
+# Generate host keys at build time
+RUN ssh-keygen -A
+
 # Create ssh user
 RUN adduser -D tunneluser
 
